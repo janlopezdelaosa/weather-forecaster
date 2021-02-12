@@ -1,32 +1,15 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import WeekForecast from "./WeekForecast";
 import DateForecast from "./DateForecast";
+import InputBox from "./InputBox";
 
 const App: React.FC = () => {
   const [city, setCity] = useState("-");
   const [forecast, setForecast] = useState<number[]>([]);
 
   return (
-    <div className="App">
-      <div>
-        <p>Select city:</p>
-        <select
-          value={city}
-          onChange={(e) => {
-            setCity(e.target.value);
-            setForecast([]);
-          }}
-          placeholder="City"
-        >
-          <option value="-">-</option>
-          <option value="zgz">Zaragoza</option>
-          <option value="mad">Madrid</option>
-          <option value="bcn">Barcelona</option>
-          <option value="brl">Berlín</option>
-        </select>
-      </div>
+    <div className="flex flex-col w-full items-center">
+      <InputBox setCity={setCity} setForecast={setForecast} />
       <div>
         {city === "-" ? (
           <p>Selecciona una ciudad para continuar</p>

@@ -25,7 +25,6 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "postbuild": "cd build && git add -A && git commit -m 'Automatic commit' && git push -u origin pages",
     "test": "craco test",
     "eject": "react-scripts eject"
   },

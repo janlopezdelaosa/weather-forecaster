@@ -5,5 +5,8 @@
   "workspaces": [
     "./front",
     "./back"
-  ]
+  ],
+  "scripts": {
+    "start": "node back/index.js"
+  }
 }

@@ -204,9 +204,9 @@ router.post("/", (req, res) => {
     missingFields.push("date");
   }
 
-  const forecast = req.body.forecast;
-  if (!forecast) {
-    missingFields.push("forecast");
+  const hourly = req.body.hourly;
+  if (!hourly) {
+    missingFields.push("hourly");
   }
 
   if (missingFields.length > 0) {
@@ -216,7 +216,7 @@ router.post("/", (req, res) => {
     const forecastData = {
       locationSlug,
       date,
-      forecast,
+      hourly,
     };
 
     const dbLocations = db.ref("/locations");
@@ -268,24 +268,21 @@ router.post("/", (req, res) => {
                       " already exists in the BD",
                   });
                 } else {
-                  console.log(typeof forecast);
-
-                  var isWellFormated = true; // = check date format
-                  if (!Array.isArray(forecast)) {
+                  if (!Array.isArray(hourly)) {
                     res.status(400);
                     res.send({
-                      msg: "Field forecast must be an array",
+                      msg: "Field hourly must be an array",
                     });
-                  } else if (forecast.length !== 24) {
+                  } else if (hourly.length !== 24) {
                     res.status(400);
                     res.send({
                       msg:
-                        "Field forecast has " +
-                        forecast.length +
+                        "Field hourly has " +
+                        hourly.length +
                         " items but must have 24",
                     });
                   } else {
-                    const allItemsAreNumber = forecast.reduce(
+                    const allItemsAreNumber = hourly.reduce(
                       (prev, curr, idx) => prev && !isNaN(curr),
                       true
                     );

@@ -1,25 +1,30 @@
 import React, { useState } from "react";
-import WeekForecast from "./WeekForecast";
-import DateForecast from "./DateForecast";
-import InputBox from "./InputBox";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import InputBox from "./components/InputBox";
+import WeeklyForecast from "./components/WeeklyForecast";
 
 const App: React.FC = () => {
-  const [city, setCity] = useState("-");
-  const [forecast, setForecast] = useState<number[]>([]);
+  const [city, setCity] = useState("");
 
   return (
-    <div className="flex flex-col w-full items-center">
-      <InputBox setCity={setCity} setForecast={setForecast} />
-      <div>
-        {city === "-" ? (
-          <p>Selecciona una ciudad para continuar</p>
-        ) : (
-          <p>Has seleccionado {city}</p>
-        )}
+    <>
+      <div className="fixed top-0 left-0 right-0 bg-white z-10">
+        <Header />
+
+        <div className="py-4 px-4 w-full flex justify-center">
+          <InputBox setCity={setCity} />
+        </div>
       </div>
-      {city !== "-" && <WeekForecast city={city} setForecast={setForecast} />}
-      {forecast.length !== 0 && <DateForecast forecast={forecast} />}
-    </div>
+
+      <div className="pt-32 pb-16 flex flex-col w-full items-center">
+        {city !== "" && <WeeklyForecast city={city} />}
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 bg-white z-10">
+        <Footer />
+      </div>
+    </>
   );
 };
 

@@ -1,34 +1,19 @@
-import { useEffect, useState } from "react";
+import { apiBase, LocationData } from "./defs";
 
-interface LocationData {
-  country: string;
-  name: string;
-  slug: string;
-}
+const fetchForecast = async (): Promise<LocationData[] | void> => {
+  const endPoint = `${apiBase}/locations`;
 
-function useLocations() {
-  const apiBase = "http://localhost:3000/locations";
-  const [locations, setLocations] = useState<LocationData[]>();
+  try {
+    const res = await fetch(endPoint);
+    const data = await res.json();
+    if (!res.ok) {
+      console.log(data.msg);
+    } else {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  useEffect(() => {
-    const fetcher = async () => {
-      try {
-        const res = await fetch(`${apiBase}`);
-        const data = await res.json();
-        if (!res.ok) {
-          console.log(data.msg);
-        } else {
-          setLocations(data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetcher();
-  }, []);
-
-  return locations;
-}
-
-export default useLocations;
+export default fetchForecast;

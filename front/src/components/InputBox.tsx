@@ -27,9 +27,9 @@ const InputBox: React.FC<InputBoxProps> = ({ setCity }) => {
     <>
       <div className="relative w-full">
         <input
-          className={`w-full pl-10 pr-1 py-1 border-black border-solid rounded-lg border-2 outline-none ${
+          className={`w-full pl-10 lg:pl-14 pr-1 py-1 border-black border-solid rounded-lg border-2 outline-none ${
             isCitySelected ? "font-bold" : ""
-          }`}
+          } lg:text-xl`}
           type="text"
           placeholder="City, Country"
           list="cities"
@@ -37,10 +37,10 @@ const InputBox: React.FC<InputBoxProps> = ({ setCity }) => {
           value={term}
         />
         <div className="absolute inset-0 flex items-align justify-between pointer-events-none">
-          <Search className="ml-3 w-5" />
+          <Search className="ml-3 lg:ml-5 w-5" />
           {term && (
             <Cross
-              className="mr-7 w-5 pointer-events-auto"
+              className="mr-7 lg:mr-10 w-5 pointer-events-auto"
               onClick={() => {
                 setTerm("");
                 setCity("");

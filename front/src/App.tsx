@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <div className="fixed top-0 left-0 right-0 bg-white z-10">
         <Header />
 
-        <div className="py-4 px-4 w-full flex justify-center">
+        <div className="py-4 px-4 md:px-20 w-full flex justify-center">
           <InputBox setCity={setCity} />
         </div>
       </div>

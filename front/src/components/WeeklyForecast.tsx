@@ -34,7 +34,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ city, days = 5 }) => {
 
   return (
     <>
-      <div className="p-2 flex flex-wrap flex-row justify-center">
+      <div className="p-2 md:p-4 flex flex-wrap flex-row justify-center">
         {forecast !== undefined && forecast.length > 0 ? (
           forecast?.map((d, i) => {
             const min = Math.min(...d.hourly);

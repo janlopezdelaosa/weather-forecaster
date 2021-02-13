@@ -14,7 +14,7 @@ var forecast = require("./forecast");
 app.use("/locations", locations);
 app.use("/forecast", forecast);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(
     `Weather forecaster server listening at http://localhost:${port}`
   );
